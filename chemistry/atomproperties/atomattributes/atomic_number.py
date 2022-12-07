@@ -1,4 +1,4 @@
-atomic_number = {
+_atomic_number = {
     'proton': 0,
     'H': 1, 'He': 2,
     'Li': 3, 'Be': 4, 'B': 5, 'C': 6, 'N': 7, 'O': 8, 'F': 9, 'Ne': 10,
@@ -18,18 +18,18 @@ atomic_number = {
     'Nh': 113, 'Fl': 114, 'Mc': 115, 'Lv': 116, 'Ts': 117, 'Og': 118
 }
 
-atomic_name = dict(zip(atomic_number.values(), atomic_number.keys()))
+_atomic_name = dict(zip(_atomic_number.values(), _atomic_number.keys()))
 
 
 def get_atomic_number(atom: str) -> int:
     """
     default return is -1
     """
-    return atomic_number.setdefault(atom, -1)
+    return _atomic_number.setdefault(atom, -1)
 
 
 def get_atomic_name(atomicNumber: int) -> str:
     """
     default return is '-1'
     """
-    return atomic_name.setdefault(atomicNumber, '-1')
+    return _atomic_name.setdefault(atomicNumber, '-1')

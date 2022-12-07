@@ -1,5 +1,5 @@
 # electronegativity by Pauling scale
-atomic_electrophilic_table = {
+_atomic_electrophilic_table = {
     'H': 2.2, 'He': 0.0, 'Li': 0.98, 'Be': 1.57, 'B': 2.04, 'C': 2.55, 'N': 3.04,
     'O': 3.44, 'F': 3.98, 'Ne': 0.0, 'Na': 0.93, 'Ti': 1.54, 'Mg': 1.31, 'Al': 1.61,
     'Si': 1.98, 'P': 2.19, 'S': 2.58, 'Cl': 3.16, 'K': 0.82, 'Ca': 1.0, 'Sc': 1.36,
@@ -18,7 +18,7 @@ atomic_electrophilic_table = {
     'Bk': 1.35, 'Cf': 1.29, 'Es': 1.31, 'Fm': 1.34, 'Md': 1.33, 'No': 1.36, 'Lr': 1.34
 }
 
-atomic_electrophilic_table_number = {
+_atomic_electrophilic_table_number = {
     1: 2.2, 2: 0.0, 3: 0.98, 4: 1.57, 5: 2.04, 6: 2.55, 7: 3.04,
     8: 3.44, 9: 3.98, 10: 0.0, 11: 0.93, 22: 1.54, 12: 1.31, 13: 1.61,
     14: 1.98, 15: 2.19, 16: 2.58, 17: 3.16, 19: 0.82, 20: 1.0, 21: 1.36,
@@ -42,11 +42,11 @@ def get_electrophilic_by_name(atom: str) -> float:
     """
     default return is -1
     """
-    return atomic_electrophilic_table.setdefault(atom, -1)
+    return _atomic_electrophilic_table.setdefault(atom, -1)
 
 
 def get_electrophilic_by_number(atom: int) -> float:
     """
     default return is -1
     """
-    return atomic_electrophilic_table_number.setdefault(atom, -1)
+    return _atomic_electrophilic_table_number.setdefault(atom, -1)

@@ -1,22 +1,21 @@
-from atomicfeatures import get_atomic_number, get_atomic_name, get_electron_configuration_diff_by_name, \
-    get_electron_configuration_diff_by_number
+import atomattributes as af
 import numpy as np
 
-noble_nums = [0, 2, 10, 18, 36, 54, 86, 118]
+_noble_nums = [0, 2, 10, 18, 36, 54, 86, 118]
 
 
 def get_ref_noble_gas_by_name(atom: str) -> tuple[str, str]:
     """
     find the closest noble atom. default return ('-1','-1')
     """
-    atom_num = get_atomic_number(atom)
+    atom_num = af.get_atomic_number(atom)
     for i in range(7):
-        ref1 = noble_nums[i]
-        ref2 = noble_nums[i + 1]
+        ref1 = _noble_nums[i]
+        ref2 = _noble_nums[i + 1]
         if ref1 <= atom_num <= ref2:
             first_ref = ref1
             second_ref = ref2
-            return get_atomic_name(ref1), get_atomic_name(ref2)
+            return af.get_atomic_name(ref1), af.get_atomic_name(ref2)
     return '-1', '-1'
 
 
@@ -26,8 +25,8 @@ def get_ref_noble_gas_by_number(atom: int) -> tuple[int, int]:
     """
     atom_num = atom
     for i in range(7):
-        ref1 = noble_nums[i]
-        ref2 = noble_nums[i + 1]
+        ref1 = _noble_nums[i]
+        ref2 = _noble_nums[i + 1]
         if ref1 <= atom_num <= ref2:
             first_ref = ref1
             second_ref = ref2
@@ -36,15 +35,23 @@ def get_ref_noble_gas_by_number(atom: int) -> tuple[int, int]:
 
 
 def config_diff_to_ref_noble_by_name(atom: str) -> tuple[np.ndarray, np.ndarray]:
+    """
+    return elelctron config difference between atom and related two noble gas. default return (-1,-1)
+    :param atom: str
+    """
     ref_1, ref_2 = get_ref_noble_gas_by_name(atom)
-    return get_electron_configuration_diff_by_name(ref_1, atom), \
-           get_electron_configuration_diff_by_name(ref_2, atom)
+    return af.get_electron_configuration_diff_by_name(atom, ref_1), \
+           af.get_electron_configuration_diff_by_name(atom, ref_2)
 
 
 def config_diff_to_ref_noble_by_number(atom: int) -> tuple[np.ndarray, np.ndarray]:
+    """
+    return elelctron config difference between atom and related two noble gas. default return (-1,-1)
+    :param atom: int
+    """
     ref_1, ref_2 = get_ref_noble_gas_by_number(atom)
-    return get_electron_configuration_diff_by_number(ref_1, atom), \
-           get_electron_configuration_diff_by_number(ref_2, atom)
+    return af.get_electron_configuration_diff_by_number(atom, ref_1), \
+           af.get_electron_configuration_diff_by_number(atom, ref_2)
 
 
 if __name__ == "__main__":

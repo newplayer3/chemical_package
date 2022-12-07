@@ -1,6 +1,6 @@
 import numpy as np
 
-atomic_electron_configuration_table = {
+_atomic_electron_configuration_table = {
     'proton': [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     'H': [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     'He': [2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -118,7 +118,7 @@ atomic_electron_configuration_table = {
     'Lv': [2, 2, 6, 2, 6, 2, 10, 6, 2, 10, 6, 2, 14, 10, 6, 2, 14, 10, 4, ]
 }
 
-atomic_electron_configuration_table_number = {
+_atomic_electron_configuration_table_number = {
     0: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     1: [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     2: [2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -243,7 +243,7 @@ def get_electron_configuration_by_name(atom: str) -> list:
     Atom range: proton ~ Lv
     default return is -1
     """
-    return atomic_electron_configuration_table.setdefault(atom, -1)
+    return _atomic_electron_configuration_table.setdefault(atom, -1)
 
 
 def get_electron_configuration_by_number(atom: int) -> list:
@@ -252,12 +252,12 @@ def get_electron_configuration_by_number(atom: int) -> list:
     atom range: proton ~ Lv
     default return is -1
     """
-    return atomic_electron_configuration_table_number.setdefault(atom, -1)
+    return _atomic_electron_configuration_table_number.setdefault(atom, -1)
 
 
 def get_electron_configuration_diff_by_name(atom1: str, atom2: str) -> np.ndarray:
     """
-    return electron configuration difference btw given two configs.  default return -1
+    return electron configuration difference btw given two configs (atom1-atom2).  default return -1
     """
     config1 = get_electron_configuration_by_name(atom1)
     config2 = get_electron_configuration_by_name(atom2)
@@ -269,7 +269,7 @@ def get_electron_configuration_diff_by_name(atom1: str, atom2: str) -> np.ndarra
 
 def get_electron_configuration_diff_by_number(atom1: int, atom2: int) -> np.ndarray:
     """
-    return electron configuration difference btw given two configs.  default return -1
+    return electron configuration difference btw given two configs  (atom1-atom2).  default return -1
     """
     config1 = get_electron_configuration_by_number(atom1)
     config2 = get_electron_configuration_by_number(atom2)
