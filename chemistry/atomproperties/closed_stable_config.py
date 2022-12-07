@@ -1,4 +1,4 @@
-import atomattributes as af
+import attributes as af
 import numpy as np
 from typing import Union
 

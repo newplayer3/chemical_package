@@ -1,9 +1,9 @@
 import numpy as np
 
-from closed_stable_config import config_diff_to_reference, config_diff_to_ref_noble_by_number
+from closed_stable_config import config_diff_to_reference
 from closed_stable_config import get_reference_atom
-from atomattributes import get_orbitals_by_positions
-from atomattributes import get_electron_configuration, get_electron_configuration_by_number
+from attributes import get_orbitals_by_positions
+from attributes import get_electron_configuration
 
 # hybridization {electron_domins: hybr_type}
 hybridizations = {0: 'non', 1: 's', 2: 'sp', 3: 'sp2', 4: 'sp3', 5: 'sp3d', 6: 'sp3d2', 7: 'sp3d3', 8: 'sp3d3f'}

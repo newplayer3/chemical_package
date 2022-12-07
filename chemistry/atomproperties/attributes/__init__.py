@@ -1,11 +1,11 @@
-from .atomic_number import *
+from .name_and_number import *
 
-from .atomic_radii import *
+from .radii import *
 
 from .electron_configuration import *
 
 from .electrophilic import *
 
-from .atomic_orbital import *
+from .orbital import *
 
 from.atomic_weight import *

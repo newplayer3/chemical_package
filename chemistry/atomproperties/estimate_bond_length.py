@@ -1,4 +1,4 @@
-from chemistry.atomproperties.atomattributes import get_atom_radii
+from chemistry.atomproperties.attributes import get_atom_radii
 from typing import Union
 
 _ratio = 0.9
