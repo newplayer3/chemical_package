@@ -1,4 +1,5 @@
 import numpy as np
+from typing import Union
 
 _atomic_electron_configuration_table = {
     'proton': [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -237,42 +238,24 @@ _atomic_electron_configuration_table_number = {
 }
 
 
-def get_electron_configuration_by_name(atom: str) -> list:
+def get_electron_configuration(atom: Union[str, int]) -> list:
     """
     give electron config [1s, 2s, 2p, 3s, 3p, 4s, 3d, 4p, 5s, 4d, 5p, 6s, 4f, 5d, 6p, 7s, 5f, 6d, 7p,]
     Atom range: proton ~ Lv
     default return is -1
     """
-    return _atomic_electron_configuration_table.setdefault(atom, -1)
+    if isinstance(atom, str):
+        return _atomic_electron_configuration_table.setdefault(atom, -1)
+    else:
+        return _atomic_electron_configuration_table_number.setdefault(atom, -1)
 
 
-def get_electron_configuration_by_number(atom: int) -> list:
-    """
-    give electron config [1s, 2s, 2p, 3s, 3p, 4s, 3d, 4p, 5s, 4d, 5p, 6s, 4f, 5d, 6p, 7s, 5f, 6d, 7p,]
-    atom range: proton ~ Lv
-    default return is -1
-    """
-    return _atomic_electron_configuration_table_number.setdefault(atom, -1)
-
-
-def get_electron_configuration_diff_by_name(atom1: str, atom2: str) -> np.ndarray:
+def get_electron_configuration_diff(atom1: Union[str, int], atom2: Union[str, int]) -> np.ndarray:
     """
     return electron configuration difference btw given two configs (atom1-atom2).  default return -1
     """
-    config1 = get_electron_configuration_by_name(atom1)
-    config2 = get_electron_configuration_by_name(atom2)
-
-    if config1 != -1 and config2 != -1:
-        return np.subtract(config1, config2)
-    return np.array(-1)
-
-
-def get_electron_configuration_diff_by_number(atom1: int, atom2: int) -> np.ndarray:
-    """
-    return electron configuration difference btw given two configs  (atom1-atom2).  default return -1
-    """
-    config1 = get_electron_configuration_by_number(atom1)
-    config2 = get_electron_configuration_by_number(atom2)
+    config1 = get_electron_configuration(atom1)
+    config2 = get_electron_configuration(atom2)
 
     if config1 != -1 and config2 != -1:
         return np.subtract(config1, config2)

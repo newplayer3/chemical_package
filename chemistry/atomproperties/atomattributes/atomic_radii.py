@@ -1,5 +1,7 @@
+from typing import Union
+
 # Pyykko radius ref:Molecular Single-Bond Covalent Radii for Elements 1–118
-_atomic_radius = {
+_atomic_radius_name = {
     'H': 32, 'He': 46, 'Li': 133, 'Be': 102, 'B': 85, 'C': 75, 'N': 71,
     'O': 63, 'F': 64, 'Ne': 67, 'Na': 155, 'Mg': 139, 'Al': 126, 'Si': 116,
     'P': 111, 'S': 103, 'Cl': 99, 'Ar': 96, 'K': 196, 'Ca': 171, 'Sc': 148,
@@ -38,15 +40,13 @@ _atomic_radius_number = {
 }
 
 
-def get_atom_radii_by_name(atom: str) -> int:
+def get_atom_radii(atom: Union[str,int]) -> int:
     """
     default return is -1
     """
-    return dict.setdefault(_atomic_radius[atom], -1)
+    if isinstance(atom,str):
+        return _atomic_radius_name.setdefault(atom, -1)
+    else:
+        return _atomic_radius_number.setdefault(atom, -1)
 
 
-def get_atom_radii_by_number(atom: int) -> int:
-    """
-    default return is -1
-    """
-    return dict.setdefault(_atomic_radius_number[atom], -1)

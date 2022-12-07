@@ -1,7 +1,9 @@
+from typing import Union
+
 # electronegativity by Pauling scale
 _atomic_electrophilic_table = {
-    'H': 2.2, 'He': 0.0, 'Li': 0.98, 'Be': 1.57, 'B': 2.04, 'C': 2.55, 'N': 3.04,
-    'O': 3.44, 'F': 3.98, 'Ne': 0.0, 'Na': 0.93, 'Ti': 1.54, 'Mg': 1.31, 'Al': 1.61,
+    'H': 2.2, 'Li': 0.98, 'Be': 1.57, 'B': 2.04, 'C': 2.55, 'N': 3.04,
+    'O': 3.44, 'F': 3.98, 'Na': 0.93, 'Ti': 1.54, 'Mg': 1.31, 'Al': 1.61,
     'Si': 1.98, 'P': 2.19, 'S': 2.58, 'Cl': 3.16, 'K': 0.82, 'Ca': 1.0, 'Sc': 1.36,
     'V': 1.63, 'Cr': 1.66, 'Mn': 1.55, 'Fe': 1.83, 'Co': 1.88, 'Ni': 1.92,
     'Cu': 1.9, 'Zn': 1.65, 'Ga': 1.81, 'Ge': 2.01, 'As': 2.18, 'Se': 2.55,
@@ -19,8 +21,8 @@ _atomic_electrophilic_table = {
 }
 
 _atomic_electrophilic_table_number = {
-    1: 2.2, 2: 0.0, 3: 0.98, 4: 1.57, 5: 2.04, 6: 2.55, 7: 3.04,
-    8: 3.44, 9: 3.98, 10: 0.0, 11: 0.93, 22: 1.54, 12: 1.31, 13: 1.61,
+    1: 2.2, 3: 0.98, 4: 1.57, 5: 2.04, 6: 2.55, 7: 3.04,
+    8: 3.44, 9: 3.98, 11: 0.93, 22: 1.54, 12: 1.31, 13: 1.61,
     14: 1.98, 15: 2.19, 16: 2.58, 17: 3.16, 19: 0.82, 20: 1.0, 21: 1.36,
     23: 1.63, 24: 1.66, 25: 1.55, 26: 1.83, 27: 1.88, 28: 1.92,
     29: 1.9, 30: 1.65, 31: 1.81, 32: 2.01, 33: 2.18, 34: 2.55,
@@ -38,15 +40,11 @@ _atomic_electrophilic_table_number = {
 }
 
 
-def get_electrophilic_by_name(atom: str) -> float:
+def get_electrophilic(atom: Union[str, int]) -> float:
     """
     default return is -1
     """
-    return _atomic_electrophilic_table.setdefault(atom, -1)
-
-
-def get_electrophilic_by_number(atom: int) -> float:
-    """
-    default return is -1
-    """
-    return _atomic_electrophilic_table_number.setdefault(atom, -1)
+    if isinstance(atom, str):
+        return _atomic_electrophilic_table.setdefault(atom, -1)
+    else:
+        return _atomic_electrophilic_table_number.setdefault(atom, -1)
