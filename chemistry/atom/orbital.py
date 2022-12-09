@@ -1,3 +1,6 @@
+from typing import Union
+import numpy as np
+
 # _position_orbital {position_in_electron_config:(n,l)}
 _position_orbital = {0: (1, 's'), 1: (2, 's'), 2: (2, 'p'), 3: (3, 's'), 4: (3, 'p'), 5: (4, 's'), 6: (3, 'd'),
                      7: (4, 'p'), 8: (5, 's'), 9: (4, 'd'), 10: (5, 'p'), 11: (6, 's'), 12: (4, 'f'), 13: (5, 'd'),
@@ -32,4 +35,17 @@ def get_orbitals_by_positions(positions: list[int]) -> list[tuple[int, str]]:
         orbital = get_orbital_by_position(position)
         if orbital != -1:
             orbitals.append(get_orbital_by_position(position))
+    return orbitals
+
+
+def get_electrons_orbital(valance_electrons: Union[list, np.ndarray]) -> list[tuple[int, str]]:
+    """
+    return principle quantum number and angular momentum for non_empty orbital.
+    default return []
+    :param valance_electrons: list of elections in each orbital len() = 19
+    """
+    orbitals = []
+    for i, electron in enumerate(valance_electrons):
+        if electron != 0:
+            orbitals.append(get_orbital_by_position(i))
     return orbitals

@@ -267,7 +267,7 @@ def get_electron_configuration_diff(atom1: Union[str, int], atom2: Union[str, in
 
 def get_reference_atom(atom: Union[str, int]) -> tuple[int, int]:
     """
-    find the closest noble atom. default return (-1, -1)
+    find the closest noble atomic number. default return (-1, -1)
     """
     if isinstance(atom, str):
         atom_num = get_atomic_number(atom)
@@ -310,3 +310,5 @@ if __name__ == "__main__":
     print(get_valence_electron(1))
     print(get_valence_electron('Ar'))
     print(get_valence_electron('Hello'))
+
+

@@ -47,4 +47,12 @@ def is_atom(atom: Union[str, int]) -> bool:
     return True
 
 
-
+def get_atomic_numbers(atom_list: list):
+    """
+    return atomic number for multiple atoms.
+    default return: []
+    """
+    for i in range(len(atom_list)):
+        if isinstance(atom_list[i], str):
+            atom_list[i] = get_atomic_number(atom_list[i])
+    return atom_list
