@@ -1,3 +1,5 @@
+from typing import Union
+
 _atomic_number = {
     'proton': 0,
     'H': 1, 'He': 2,
@@ -32,4 +34,18 @@ def get_atomic_name(atomicNumber: int) -> str:
     """
     default return is '-1'
     """
-    return _atomic_name.setdefault(atomicNumber, '-1')
+    return _atomic_name.setdefault(atomicNumber, -1)
+
+
+def is_atom(atom: Union[str, int]) -> bool:
+    if isinstance(atom, str):
+        if get_atomic_number(atom) == -1:
+            return False
+    else:
+        if get_atomic_name(atom) == -1:
+            return False
+    return True
+
+
+if __name__ == "__main__":
+    pass

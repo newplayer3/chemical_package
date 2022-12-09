@@ -1,5 +1,8 @@
 import numpy as np
 from typing import Union
+from name_and_number import *
+
+_noble_nums = [0, 2, 10, 18, 36, 54, 86, 118]
 
 _atomic_electron_configuration_table = {
     'proton': [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -260,3 +263,49 @@ def get_electron_configuration_diff(atom1: Union[str, int], atom2: Union[str, in
     if config1 != -1 and config2 != -1:
         return np.subtract(config1, config2)
     return np.array(-1)
+
+def get_reference_atom(atom: Union[str, int]) -> tuple[int, int]:
+    """
+    find the closest noble atom. default return (-1, -1)
+    """
+    if isinstance(atom, str):
+        atom_num = get_atomic_number(atom)
+        for i in range(7):
+            ref1 = _noble_nums[i]
+            ref2 = _noble_nums[i + 1]
+            if ref1 <= atom_num <= ref2:
+                first_ref = ref1
+                second_ref = ref2
+                return get_atomic_name(ref1), get_atomic_name(ref2)
+    else:
+        atom_num = atom
+        for i in range(7):
+            ref1 = _noble_nums[i]
+            ref2 = _noble_nums[i + 1]
+            if ref1 <= atom_num <= ref2:
+                first_ref = ref1
+                second_ref = ref2
+                return ref1, ref2
+    return -1, -1
+
+
+def get_valence_electron(atom: Union[str, int]) -> tuple[np.ndarray, np.ndarray]:
+    """
+    return elelctron config difference between atom and related two noble gas. default return (-1,-1)
+    :param atom: str
+    """
+    ref_1, ref_2 = get_reference_atom(atom)
+    return get_electron_configuration_diff(atom, ref_1), \
+           get_electron_configuration_diff(atom, ref_2)
+
+
+if __name__ == "__main__":
+    print(get_reference_atom('H'))
+    print(get_reference_atom(6))
+    print(get_reference_atom('Ar'))
+    print(get_reference_atom('Hello'))
+
+    print(get_valence_electron('H'))
+    print(get_valence_electron(1))
+    print(get_valence_electron('Ar'))
+    print(get_valence_electron('Hello'))

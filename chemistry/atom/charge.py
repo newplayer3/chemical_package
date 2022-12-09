@@ -1,4 +1,4 @@
-import closed_stable_config as csc
+from attributes.electron_configuration import *
 import numpy as np
 from typing import Union
 
@@ -9,7 +9,7 @@ def get_charge_range(atom: Union[str, int]) -> tuple[int, int]:
     :param atom: str
 
     """
-    electron_loss, electron_gain = csc.config_diff_to_reference(atom)
+    electron_loss, electron_gain = get_valence_electron(atom)
 
     max_charge = int(np.sum(electron_loss))
     min_charge = int(np.sum(electron_gain))
