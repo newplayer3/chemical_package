@@ -1,6 +1,6 @@
 import numpy as np
 from typing import Union
-from name_and_number import *
+from name_and_number import get_atomic_number, get_atomic_name
 
 _noble_nums = [0, 2, 10, 18, 36, 54, 86, 118]
 
@@ -263,6 +263,7 @@ def get_electron_configuration_diff(atom1: Union[str, int], atom2: Union[str, in
     if config1 != -1 and config2 != -1:
         return np.subtract(config1, config2)
     return np.array(-1)
+
 
 def get_reference_atom(atom: Union[str, int]) -> tuple[int, int]:
     """

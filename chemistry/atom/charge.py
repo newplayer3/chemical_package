@@ -1,4 +1,4 @@
-from attributes.electron_configuration import *
+from chemistry.atom.electron_configuration import *
 import numpy as np
 from typing import Union
 

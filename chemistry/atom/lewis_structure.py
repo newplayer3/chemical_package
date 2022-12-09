@@ -1,6 +1,7 @@
 import numpy as np
 from typing import Union
-from attributes import *
+from chemistry.atom.electron_configuration import get_valence_electron
+from chemistry.atom.name_and_number import get_atomic_number
 
 # hybridization {electron_domins: hybr_type}
 _hybridizations = {0: 'non', 1: 's', 2: 'sp', 3: 'sp2', 4: 'sp3', 5: 'sp3d', 6: 'sp3d2', 7: 'sp3d3', 8: 'sp3d3f'}
@@ -34,24 +35,18 @@ def cubic_shape_lewis_structure(
     if bond_orders is None:
         bond_orders = [0] + [1 for _ in range(len(atom_list) - 1)]
 
-
     # collect info for main atom
     main_atom = atom_list.pop(0)
     charge = bond_orders.pop(0)
     total_bonds = sum(bond_orders)
 
     electron_change = 0 - charge + total_bonds
-    valence_electron = get_valence_electron(main_atom)
+    valence_electron, _ = get_valence_electron(main_atom)
 
 
-
-
+    print(valence_electron)
 
     return cube
-
-
-
-
 
 
 if __name__ == "__main__":
