@@ -292,7 +292,8 @@ def get_reference_atom(atom: Union[str, int]) -> tuple[int, int]:
 
 def get_valence_electron(atom: Union[str, int]) -> tuple[np.ndarray, np.ndarray]:
     """
-    return elelctron config difference between atom and related two noble gas. default return (-1,-1)
+    return elelctron config difference between atom and related two noble gas. default return (-1,-1).
+    :return: maximum electrons can lose, maximum electron can gain
     :param atom: str
     """
     ref_1, ref_2 = get_reference_atom(atom)
