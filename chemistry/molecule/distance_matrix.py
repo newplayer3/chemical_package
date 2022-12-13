@@ -1,7 +1,7 @@
 import tensorflow as tf
 
 
-def get_distance_matrix(coordinate_list: tf.Tensor, system_name: str = 'cartesian') -> tf.Tensor:
+def get_distance_matrix(coordinate_list: tf.Variable, system_name: str = 'cartesian') -> tf.Variable:
     """
     return distance matrix from input coordinations
     default return -1
@@ -24,6 +24,8 @@ def _cartensian_distance_matrix(coordinate_list):
     vertex_2 = tf.expand_dims(coordinate_list, -3)
     matrix = tf.sqrt(tf.reduce_sum(tf.square(vertex_1 - vertex_2), axis=-1))
     return matrix
+
+
 
 
 

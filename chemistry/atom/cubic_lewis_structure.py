@@ -1,8 +1,6 @@
 import numpy as np
 from typing import Union
-from chemistry.atom.electron_configuration import get_valence_electron
-from chemistry.atom.name_and_number import get_atomic_numbers
-from chemistry.atom.orbital import get_electrons_orbital
+from chemistry import get_atomic_numbers
 
 # hybridization {electron_domins: hybr_type}
 _hybridizations = {0: 'non', 1: 's', 2: 'sp', 3: 'sp2', 4: 'sp3', 5: 'sp3d', 6: 'sp3d2', 7: 'sp3d3', 8: 'sp3d3f'}
