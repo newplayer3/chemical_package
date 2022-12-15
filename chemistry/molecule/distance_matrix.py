@@ -6,7 +6,7 @@ def get_distance_matrix(coordinate_list: tf.Tensor, system_name: str = 'cartesia
     return distance matrix from input coordinations
     default return -1
     """
-    tf.debugging.assert_rank_at_least(coordinate_list,2, message="coordinate tensor at least at rank 2")
+    tf.debugging.assert_rank_at_least(coordinate_list, 2, message="coordinate tensor at least at rank 2")
 
     tf.debugging.assert_integer(coordinate_list, message="coordinate tensor must be float")
 
@@ -24,8 +24,6 @@ def _cartensian_distance_matrix(coordinate_list):
     vertex_2 = tf.expand_dims(coordinate_list, -3)
     matrix = tf.sqrt(tf.reduce_sum(tf.square(vertex_1 - vertex_2), axis=-1))
     return matrix
-
-
 
 
 if __name__ == "__main__":
